@@ -16,6 +16,11 @@ const client = new line.Client(config);
 // createExpress app
 const app = express();
 
+// Alive monitoring (to keep up Heroku)
+app.get('/alive', (req, res) => {
+  return res.send('I\'m alive.');
+});
+
 app.post('/callback', line.middleware(config), (req, res) => {
   //console.log(req.body.events);
 
